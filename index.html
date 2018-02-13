@@ -6,17 +6,21 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
     <script type="text/javascript" src="frontend/api_requests.js"></script>
+    <link rel="stylesheet" href="frontend/styles.css">
     <title>Sport Teams DV</title>
   </head>
   <body>
     <h1>Testing it out</h1>
-    <div id='map' style='width: 400px; height: 300px;'></div>
+    <div id='map' style='width: 1000px; height: 800px;'></div>
     <script>
-    mapboxgl.accessToken = '<pk.eyJ1IjoiYWRyaWFuMDgiLCJhIjoiY2pka3VheWJrMDBzdTJ3cDJrc2d2cmt5NSJ9.WI36anNTys2WOSU-qZDnCA>';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYWRyaWFuMDgiLCJhIjoiY2pka3VheWJrMDBzdTJ3cDJrc2d2cmt5NSJ9.WI36anNTys2WOSU-qZDnCA';
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9'
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [-96.6487588, 39.735076], // starting position [lng, lat]
+        zoom: 3.5
     });
+    map.scrollZoom.disable();
     </script>
   </body>
 </html>
