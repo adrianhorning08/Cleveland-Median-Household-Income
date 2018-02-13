@@ -2,25 +2,48 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
-    <script type="text/javascript" src="frontend/api_requests.js"></script>
-    <link rel="stylesheet" href="frontend/styles.css">
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <script type="text/javascript" src="api_requests.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <title>Sport Teams DV</title>
   </head>
   <body>
     <h1>Testing it out</h1>
-    <div id='map' style='width: 1000px; height: 800px;'></div>
+    <div id='map' style='width: 1400px; height: 800px;'></div>
     <script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYWRyaWFuMDgiLCJhIjoiY2pka3VheWJrMDBzdTJ3cDJrc2d2cmt5NSJ9.WI36anNTys2WOSU-qZDnCA';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: [-96.6487588, 39.735076], // starting position [lng, lat]
-        zoom: 3.5
-    });
-    map.scrollZoom.disable();
-    </script>
+L.mapbox.accessToken = 'pk.eyJ1IjoiYWRyaWFuMDgiLCJhIjoiY2pka3U4M2xqMDB5MzM0bXRya3J3ZTR4YiJ9.gqBaJEn_JwtS7LWk8lBwmA';
+var map = L.mapbox.map('map', 'mapbox.comic', {zoomControl: false})
+  .setView([38.0956792, -95.8748384], 5);
+   map.dragging.disable();
+   map.touchZoom.disable();
+   map.doubleClickZoom.disable();
+   map.scrollWheelZoom.disable();
+
+let marker = L.marker([41.4993, -81.6944]).addTo(map);
+
+marker.on('click', function(e){
+    map.setView(e.latlng, 13);
+});
+
+var home = {
+  lat: 38.0956792,
+  lng: -95.8748384,
+  zoom: 8
+};
+
+var myButtonOptions = {
+      'text': 'MyButton',  // string
+      'iconUrl': 'images/myButton.png',  // string
+      'hideText': true,  // bool
+      'maxWidth': 30,  // number
+      'doToggle': false,  // bool
+      'toggleStatus': false  // bool
+}
+
+var myButton = new L.Control.Button(myButtonOptions).addTo(map);
+
+</script>
   </body>
 </html>

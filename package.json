@@ -8,5 +8,8 @@
     "start": "webpack --watch"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "leaflet-easybutton": "^2.3.0"
+  }
 }

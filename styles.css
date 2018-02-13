@@ -1,0 +1,34 @@
+#map {
+  position: absolute;
+  left: 1%;
+}
+
+/* .overlay {
+  height: 800px;
+  width: 1000px;
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  left: 15%;
+} */
+
+svg {
+  height: 30px;
+  width: 30px;
+  position: fixed;
+  top: 45%;
+  left: 76.5%;
+}
+
+svg:hover {
+  cursor: pointer;
+}
+
+circle {
+  cx: 15;
+  cy: 15;
+  r: 10;
+  fill: red;
+  stroke: white;
+  stroke-width: 4;
+}
