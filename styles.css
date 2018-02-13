@@ -3,14 +3,16 @@
   left: 1%;
 }
 
-/* .overlay {
-  height: 800px;
-  width: 1000px;
-  display: flex;
-  position: absolute;
-  z-index: 2;
-  left: 15%;
-} */
+.leaflet-touch .leaflet-bar button {
+  background: black;
+  color: white;
+}
+
+.easy-button-button .button-state {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
 
 svg {
   height: 30px;
