@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "leaflet-easybutton": "^2.3.0"
+    "leaflet-easybutton": "^2.3.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "webpack": "^3.11.0"
   }
 }
