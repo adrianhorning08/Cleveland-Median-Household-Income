@@ -3,9 +3,25 @@
   left: 1%;
 }
 
+#info {
+  display: block;
+  position: relative;
+  margin: 0px auto;
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #222;
+  background: #fff;
+  }
+
 .leaflet-touch .leaflet-bar button {
   background: black;
   color: white;
+  width: 40px !important;
+  height: 40px !important;
 }
 
 .easy-button-button .button-state {

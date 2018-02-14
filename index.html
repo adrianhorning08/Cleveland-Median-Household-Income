@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
     <script type="text/javascript" src="api_requests.js"></script>
@@ -14,6 +15,10 @@
   <body>
     <h1>Testing it out</h1>
     <div id='map' style='width: 1400px; height: 800px;'></div>
+    <pre id='info'></pre>
+    <div id="median-income">
+      
+    </div>
     <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiYWRyaWFuMDgiLCJhIjoiY2pka3U4M2xqMDB5MzM0bXRya3J3ZTR4YiJ9.gqBaJEn_JwtS7LWk8lBwmA';
 var map = L.mapbox.map('map', 'mapbox.comic', {zoomControl: false})
@@ -25,13 +30,33 @@ var map = L.mapbox.map('map', 'mapbox.comic', {zoomControl: false})
 
 let marker = L.marker([41.4993, -81.6944]).addTo(map);
 
+var para = document.createElement("p");
+var medIncome = document.getElementById("median-income");
+var node = document.createTextNode("This is new.");
+para.appendChild(node);
+
 marker.on('click', function(e){
     map.flyTo(e.latlng, 13);
+    medIncome.appendChild(para)
 });
+
 
 L.easyButton('fa-home fa-2x', function(btn, map){
   map.flyTo([38.0956792, -95.8748384], 5);
 }).addTo(map);
+
+var clevImage = 'https://media.cntraveler.com/photos/578cf248a3f6784a6a6125e8/master/pass/cleveland-skyline-GettyImages-177524470.jpg',
+    clevImageBounds = [[41.55, -81.814], [41.4490, -81.5756]];
+L.imageOverlay(clevImage, clevImageBounds).addTo(map);
+
+map.on('mousemove', function (e) {
+    document.getElementById('info').innerHTML =
+        // e.point is the x, y coordinates of the mousemove event relative
+        // to the top-left corner of the map
+        JSON.stringify(e.point) + '<br />' +
+        // e.lngLat is the longitude, latitude geographical position of the event
+        JSON.stringify(e.latlng);
+});
 
 </script>
   </body>
