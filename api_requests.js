@@ -8,11 +8,14 @@ const fetchSportsData = (yr) => {
 const fetchData = () => {
   return $.ajax({
     method: 'GET',
-    url: `http://api.datausa.io/attrs/geo/16000US3916000/`
+    url: `http://api.datausa.io/attrs/geo/16000US3916000/`,
+    dataType: 'jsonp'
   });
 };
 
 fetchData().then(res => console.log(res));
+
+// fetch(`http://api.datausa.io/attrs/geo/16000US3916000/`).then(res => console.log(res));
 
 // census bureau api key bc6b73c6cce45b6fdb1a47f9f4785efbd765faa0
 

@@ -15,10 +15,11 @@
   <body>
     <h1>Testing it out</h1>
     <div id='map' style='width: 1400px; height: 800px;'></div>
-    <pre id='info'></pre>
     <div id="median-income">
-      
+      <h2>Median Income</h2>
     </div>
+    <pre id='info'></pre>
+
     <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoiYWRyaWFuMDgiLCJhIjoiY2pka3U4M2xqMDB5MzM0bXRya3J3ZTR4YiJ9.gqBaJEn_JwtS7LWk8lBwmA';
 var map = L.mapbox.map('map', 'mapbox.comic', {zoomControl: false})
@@ -28,22 +29,25 @@ var map = L.mapbox.map('map', 'mapbox.comic', {zoomControl: false})
    map.doubleClickZoom.disable();
    map.scrollWheelZoom.disable();
 
-let marker = L.marker([41.4993, -81.6944]).addTo(map);
+let clevelandMarker = L.marker([41.4993, -81.6944]).addTo(map);
 
-var para = document.createElement("p");
-var medIncome = document.getElementById("median-income");
-var node = document.createTextNode("This is new.");
-para.appendChild(node);
-
-marker.on('click', function(e){
-    map.flyTo(e.latlng, 13);
-    medIncome.appendChild(para)
+clevelandMarker.on('click', function(e){
+    map.setView(e.latlng, 13);
+    let el = document.getElementById('median-income');
+    // *How to add h1 to a div*
+    // var h1 = document.createElement('H1');
+    // let text = document.createTextNode('Cleveland');
+    // h1.appendChild(text);
+    // el.appendChild(h1);
+    el.classList.remove('hidden')
 });
 
 
-L.easyButton('fa-home fa-2x', function(btn, map){
-  map.flyTo([38.0956792, -95.8748384], 5);
+let homeButton = L.easyButton('fa-home fa-2x', function(btn, map){
+  map.setView([38.0956792, -95.8748384], 5);
+  document.getElementById('median-income').className = 'hidden'
 }).addTo(map);
+
 
 var clevImage = 'https://media.cntraveler.com/photos/578cf248a3f6784a6a6125e8/master/pass/cleveland-skyline-GettyImages-177524470.jpg',
     clevImageBounds = [[41.55, -81.814], [41.4490, -81.5756]];
@@ -57,6 +61,8 @@ map.on('mousemove', function (e) {
         // e.lngLat is the longitude, latitude geographical position of the event
         JSON.stringify(e.latlng);
 });
+
+
 
 </script>
   </body>

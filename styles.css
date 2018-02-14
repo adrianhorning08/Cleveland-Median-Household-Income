@@ -17,6 +17,30 @@
   background: #fff;
   }
 
+  .leaflet-div-icon {
+    width: 100px;
+    height: 100px;
+    background: white;
+  }
+
+  .hidden {
+    color: transparent !important;
+    border: transparent !important;
+  }
+
+  #median-income {
+    z-index: 10;
+    width: 200px;
+    padding: 10px;
+    height: 200px;
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    border: 1px solid white;
+    color: white;
+  }
+
+
 .leaflet-touch .leaflet-bar button {
   background: black;
   color: white;
