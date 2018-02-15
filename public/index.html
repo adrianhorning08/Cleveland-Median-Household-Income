@@ -9,17 +9,38 @@
     <title>Cleveland Economic Data</title>
   </head>
   <body>
-    <h1>Testing it out</h1>
+    <h1>Cleveland Median Household Income</h1>
     <canvas id="myChart" width="400" height="400"></canvas>
+
       <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-          type: 'bar',
+
+      let results;
+      function initialize() {
+    // Setting URL and headers for request
+        var options = {
+        url: 'https://api.datausa.io/api/?sort=desc&show=geo&required=income%2Cincome_moe&sumlevel=all&year=all&geo=01000US%2C04000US39%2C05000US39035%2C31000US17460%2C16000US3916000',
+        };
+        return new Promise(function(resolve, reject) {
+            fetch(options, function(err, resp, body) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(JSON.parse(body));
+                }
+            })
+        })
+      }
+
+
+
+      let ctx = document.getElementById("myChart");
+      let myChart = new Chart(ctx, {
+          type: 'horizontalBar',
           data: {
-              labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+              labels: ["United States", "Ohio", "Cuyahoga County", "Cleveland", "Cleveland-Elyria Metro area"],
               datasets: [{
-                  label: '# of Votes',
-                  data: [12, 19, 3, 5, 2, 3],
+                  label: 'Median Household Income',
+                  data: [12, 19, 3, 5, 6],
                   backgroundColor: [
                       'rgba(255, 99, 132, 0.2)',
                       'rgba(54, 162, 235, 0.2)',
