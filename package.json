@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.16.2",
     "leaflet-easybutton": "^2.3.0",
+    "node-fetch": "^2.0.0",
     "path": "^0.12.7"
   },
   "devDependencies": {

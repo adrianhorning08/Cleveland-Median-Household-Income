@@ -7,14 +7,13 @@ const PORT = 8000;
 
 app.use(express.static('public'));
 
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-app.get('/', (req, res) => {
+app.get('/city/household_income/:geoId', (req, res) => {
   let results;
-  fetch('http://api.datausa.io/attrs/geo/16000US3916000/')
+  fetch(`http://api.datausa.io/attrs/geo/:geoId/`)
     .then(r => console.log(r))
     .then(function(response) {
         return response.text();
@@ -25,7 +24,6 @@ app.get('/', (req, res) => {
         console.log(JSON.parse(body)[0]);
         res.send(results);
     });
-
 });
 
 app.listen(PORT, () => {
