@@ -2,8 +2,7 @@
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('/city/household_income/16000US3916000')
-    .then(res => console.log(res));
+
   L.mapbox.accessToken = 'pk.eyJ1IjoiYWRyaWFuMDgiLCJhIjoiY2pka3U4M2xqMDB5MzM0bXRya3J3ZTR4YiJ9.gqBaJEn_JwtS7LWk8lBwmA';
   var map = L.mapbox.map('map', 'mapbox.comic', {zoomControl: false})
     .setView([38.0956792, -95.8748384], 5);
