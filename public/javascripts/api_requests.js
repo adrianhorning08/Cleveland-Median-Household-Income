@@ -13,7 +13,6 @@ const fetchData = () => {
   });
 };
 
-fetchData().then(res => console.log(res));
 
 // fetch(`http://api.datausa.io/attrs/geo/16000US3916000/`).then(res => console.log(res));
 
