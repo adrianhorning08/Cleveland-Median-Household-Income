@@ -11,25 +11,22 @@
   <body>
     <h1>Cleveland Median Household Income</h1>
     <canvas id="myChart" width="400" height="400"></canvas>
-
       <script>
 
-      let results;
-      function initialize() {
-    // Setting URL and headers for request
-        var options = {
+      var results
+      $.ajax({
+        type:'get',
         url: 'https://api.datausa.io/api/?sort=desc&show=geo&required=income%2Cincome_moe&sumlevel=all&year=all&geo=01000US%2C04000US39%2C05000US39035%2C31000US17460%2C16000US3916000',
-        };
-        return new Promise(function(resolve, reject) {
-            fetch(options, function(err, resp, body) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(JSON.parse(body));
-                }
-            })
-        })
-      }
+        dataType:'json',
+        success: function(data) {
+            useReturnData(data);
+        }
+      });
+
+function useReturnData(data){
+    results = data;
+};
+console.log(results);
 
 
 
