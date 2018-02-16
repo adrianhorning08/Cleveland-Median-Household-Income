@@ -11,62 +11,74 @@
   <body>
     <h1>Cleveland Median Household Income</h1>
     <canvas id="myChart" width="400" height="400"></canvas>
+    <button id="0" type="button" >2013</button>
+    <button id="1" type="button" >2014</button>
+    <button id="2" type="button" >2015</button>
       <script>
+      var results;
+      const fetchData = () => {
+        return $.ajax({
+          method: 'GET',
+          url: `https://api.datausa.io/api/?sort=desc&show=geo&required=income%2Cincome_moe&sumlevel=all&year=all&geo=01000US%2C04000US39%2C05000US39035%2C31000US17460%2C16000US3916000`
+        });
+      };
 
-      var results
-      $.ajax({
-        type:'get',
-        url: 'https://api.datausa.io/api/?sort=desc&show=geo&required=income%2Cincome_moe&sumlevel=all&year=all&geo=01000US%2C04000US39%2C05000US39035%2C31000US17460%2C16000US3916000',
-        dataType:'json',
-        success: function(data) {
-            useReturnData(data);
-        }
+      fetchData().then(res => {
+        results = res
+        results = results.data
+        let ctx = document.getElementById("myChart");
+        let config = {
+            type: 'horizontalBar',
+            data: {
+                labels: ["United States", "Ohio", "Cuyahoga County", "Cleveland-Elyria Metro area", "Cleveland"],
+                datasets: [{
+                    label: 'Median Household Income',
+                    data: [results[0][2], results[1][2], results[2][2], results[3][2], results[4][2]],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        };
+      let myChart = new Chart(ctx, config);
+      $("#0").click(function() {
+        let thirteen_data = [results[0][2], results[1][2], results[2][2], results[3][2], results[4][2]];
+        let data = config.data.datasets[0].data;
+        data = thirteen_data;
+        myChart.update();
       });
-
-function useReturnData(data){
-    results = data;
-};
-console.log(results);
-
-
-
-      let ctx = document.getElementById("myChart");
-      let myChart = new Chart(ctx, {
-          type: 'horizontalBar',
-          data: {
-              labels: ["United States", "Ohio", "Cuyahoga County", "Cleveland", "Cleveland-Elyria Metro area"],
-              datasets: [{
-                  label: 'Median Household Income',
-                  data: [12, 19, 3, 5, 6],
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255,99,132,1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero:true
-                      }
-                  }]
-              }
-          }
+      $("#1").click(function() {
+        let data = config.data.datasets[0].data;
+        let fourteen_data = [results[5][2], results[6][2], results[7][2], results[8][2], results[9][2]];
+        console.log(data);
+        data = fourteen_data;
+        console.log(data);
+        myChart.update();
       });
+    })
     </script>
   </body>
 </html>
